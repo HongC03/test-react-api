@@ -24,7 +24,7 @@ const Product = () => {
 	}
 
 	const { fields } = product;
-	const { name, description, price, image } = fields;
+	const { name, description, price, url } = fields;
 
 	return (
 		<section className='section section-center'>
@@ -37,7 +37,7 @@ const Product = () => {
 					<div className='title-underline'></div>
 				</div>
         <article className="single-product">
-          <img className='single-product-img' src={image[0].url} alt={name} />
+          <img className='single-product-img' src={url} alt={name} />
         <div>
           <h5>{name}</h5>
           <h5 className='price'>${price}</h5>

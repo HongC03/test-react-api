@@ -50,10 +50,11 @@ exports.handler = async (event, context, callback) => {
 				description,
 				images
 			} = product.fields;
+			const url = images[0].url;
 			return {
 				id,
 				name,
-				images,
+				url,
 				price,
 				company,
 				department,

@@ -36,7 +36,7 @@ exports.handler = async (event, context, callback) => {
 			const { id } = product;
 			const {
 				name,
-				image,
+				images,
 				price,
 				company,
 				department,
@@ -50,7 +50,7 @@ exports.handler = async (event, context, callback) => {
 				colors,
 				description,
 			} = product.fields;
-			const url = image[0].url;
+			const url = images[0].url;
 			return {
 				id,
 				name,

@@ -11,8 +11,11 @@ export const Airtable = () => {
 	const fetchData = async () => {
 		try {
 			const { data } = await axios.get(url);
+			console.log(data);
 			setProducts(data);
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {

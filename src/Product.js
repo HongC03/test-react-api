@@ -11,7 +11,9 @@ const Product = () => {
 		try {
 			const { data } = await axios.get(`/api/product?id=${productID}`);
 			setProduct(data);
-		} catch (error) {}
+		} catch (error) {
+			console.log(error);
+		}
 		setIsLoading(false);
 	};
 

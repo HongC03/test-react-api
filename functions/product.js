@@ -9,7 +9,44 @@ exports.handler = async (event, context, callback) => {
 	const { id } = event.queryStringParameters;
 	if (id) {
 		try {
-			const product = await airtable.retrieve(id);
+			const singleProduct = await airtable.retrieve(id);
+			const product = singleProduct.map((item) => {
+				const { id } = item;
+				const {
+					name,
+					price,
+					company,
+					department,
+					releaseDate,
+					freeshipping,
+					featured,
+					category,
+					stock,
+					stars,
+					reviews,
+					colors,
+					description,
+					images
+				} = item.fields;
+				const url = images[0].url;
+				return {
+					id,
+					name,
+					url,
+					price,
+					company,
+					department,
+					releaseDate,
+					freeshipping,
+					featured,
+					category,
+					stock,
+					stars,
+					reviews,
+					colors,
+					description,
+				};
+			});
 			if (product.error) {
 				return {
 					statusCode: 404,

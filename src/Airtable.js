@@ -1,17 +1,14 @@
-//  API from own function
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { formatPrice } from './helper';
 
-const url = '/api/product';
+const url = 'https://test-react-api.netlify.app/api/product';
 export const Airtable = () => {
 	const [products, setProducts] = useState([]);
 
 	const fetchData = async () => {
 		try {
 			const { data } = await axios.get(url);
-			console.log(data);
 			setProducts(data);
 		} catch (error) {
 			console.log(error);
@@ -25,20 +22,23 @@ export const Airtable = () => {
 	return (
 		<section className='section section-center'>
 			<div className='title'>
-				<h2>Airtable</h2>
+				<h2>Data from Airtable</h2>
 				<div className='title-underline'></div>
+			</div>
+			<div className='link'>
+				<a href='https://test-react-api.netlify.app/api/product'>API Link</a>
 			</div>
 			<div className='products'>
 				{products.map((product) => {
 					const { id, url, price, name } = product;
 					return (
-						<Link to={`/${id}`} article className='product' key={id}>
+						<section className='product' key={id}>
 							<img src={url} alt={name} />
 							<div className='info'>
 								<h5>{name}</h5>
-								<h5 className='price'>${price}</h5>
+								<h5 className='price'>{formatPrice(price)}</h5>
 							</div>
-						</Link>
+						</section>
 					);
 				})}
 			</div>
